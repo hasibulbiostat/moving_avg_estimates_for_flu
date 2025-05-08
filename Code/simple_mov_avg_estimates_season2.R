@@ -1,0 +1,42 @@
+#### load library TTR for calculating a simple moving average 
+library(TTR)
+#### load library zoo for the roll mean function which computes a simple moving average by taking obs on each side 
+
+
+library(zoo) 
+
+file_path <- file.path('G:','infectious_disease_modelling_dataset','household_1_season_2.csv')
+
+data <- read.csv(file_path,header=T)
+
+
+
+
+
+
+
+last_sym_onset_date <- max(data$day_ill)
+
+daily_cases<-cut(data$day_ill,breaks=seq(0,last_sym_onset_date,1))
+
+daily_cases <- table(daily_cases)
+
+names(daily_cases) <-NULL
+
+SMA(daily_cases,n=3)
+
+
+
+simple_moving_avg <- rollmean(daily_cases,7,na.pad = T)
+
+simple_moving_avg <- ifelse(is.na(simple_moving_avg),0,simple_moving_avg)
+
+simple_moving_avg <- simple_moving_avg/mean(simple_moving_avg)
+
+simple_moving_avg_df <- data.frame(simple_moving_avg_est = simple_moving_avg)
+
+
+
+file_write_out = file.path('G:','infectious_disease_modelling_dataset','simp_mov_avg_estimates_season2.csv')
+
+write.csv(simple_moving_avg_df,row.names=F,file=file_write_out)
