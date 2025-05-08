@@ -5,7 +5,7 @@ library(TTR)
 
 library(zoo) 
 
-file_path <- file.path('G:','infectious_disease_modelling_dataset','household_1_season_2.csv')
+file_path <- file.path('C:','Users','hasib','OneDrive','Desktop','moving_avg_estimate_for_flu','Data','household_1_season_2.csv')
 
 data <- read.csv(file_path,header=T)
 
@@ -37,6 +37,7 @@ simple_moving_avg_df <- data.frame(simple_moving_avg_est = simple_moving_avg)
 
 
 
-file_write_out = file.path('G:','infectious_disease_modelling_dataset','simp_mov_avg_estimates_season2.csv')
+file_write_out = file.path('C:','Users','hasib','OneDrive','Desktop','moving_avg_estimate_for_flu','output',
+                           'simp_mov_avg_estimates_season2.csv')
 
 write.csv(simple_moving_avg_df,row.names=F,file=file_write_out)
