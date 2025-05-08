@@ -33,7 +33,7 @@ simple_moving_avg <- ifelse(is.na(simple_moving_avg),0,simple_moving_avg)
 
 simple_moving_avg <- simple_moving_avg/mean(simple_moving_avg)
 
-simple_moving_avg_df <- data.frame(simple_moving_avg_est = simple_moving_avg)
+simple_moving_avg_df <- data.frame(simple_moving_avg_est = round(simple_moving_avg,2))
 
 
 
